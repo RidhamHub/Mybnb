@@ -1,0 +1,123 @@
+<%- include('../partials/head') %>
+</head>
+<body class="bg-white font-sans min-h-screen text-gray-800">
+  <%- include('../partials/nav') %>
+
+  <main class="flex items-center justify-center min-h-screen px-4">
+    <div class="w-full max-w-xl bg-white shadow-xl rounded-2xl p-8">
+      <!-- Heading -->
+      <h1 class="text-4xl font-extrabold text-center text-rose-600 mb-2">Create an Account</h1>
+      <p class="text-center text-gray-500 mb-8">Join us to list your property and explore stays!</p>
+
+      <!-- Registration Form -->
+      <form action="/signup" method="POST" class="space-y-5">
+        <!-- Name Fields -->
+       
+        <%- include('../partials/errors') %>
+
+        <div class="flex gap-4">
+          <input
+            type="text"
+            name="firstName"
+            placeholder="First Name"
+            value="<%= oldInput.firstName ? oldInput.firstName : '' %>"
+            required
+            autofocus
+            class="w-1/2 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500"
+          />
+          <input
+            type="text"
+            name="lastName"
+            value="<%= oldInput.lastName ? oldInput.lastName : '' %>"
+            placeholder="Last Name"
+            class="w-1/2 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500"
+          />
+        </div>
+
+        <!-- Email -->
+        <input
+          type="email"
+          name="email"
+          placeholder="Email Address"
+          value="<%= oldInput.email ? oldInput.email : '' %>"
+          required
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500"
+        />
+
+        <!-- Passwords -->
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500"
+        />
+        <input
+          type="password"
+          name="confirmPassword"
+          placeholder="Confirm Password"
+          required
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500"
+        />
+
+        <!-- User Type -->
+        <div>
+          <p class="text-sm font-medium text-gray-700 mb-2">I want to register as:</p>
+          <div class="flex gap-6">
+            <label class="flex items-center space-x-2 cursor-pointer">
+              <input
+                type="radio"
+                name="userType"
+                value="guest"
+                id="guest"
+               <% if (oldInput.userType === "guest") { %> checked <% } %>
+                class="text-rose-600 focus:ring-rose-500 w-4 h-4"
+              />
+              <span>Guest</span>
+            </label>
+            <label class="flex items-center space-x-2 cursor-pointer">
+              <input
+                type="radio"
+                name="userType"
+                value="host"
+                id="host"
+                <% if (oldInput.userType === "host") { %> checked <% } %>
+                class="text-rose-600 focus:ring-rose-500 w-4 h-4"
+              />
+              <span>Host</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Terms -->
+        <div class="flex items-start gap-2 mt-3">
+          <input
+            type="checkbox"
+            name="terms"
+            id="terms"
+            required
+            class="text-rose-600 focus:ring-rose-500 w-4 h-4 mt-1"
+          />
+          <label for="terms" class="text-sm text-gray-600">
+            I agree to the <a href="#" class="text-rose-600 underline hover:text-rose-800">terms and conditions</a>.
+          </label>
+        </div>
+
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          class="w-full bg-rose-600 hover:bg-rose-700 transition text-white font-semibold py-3 rounded-lg shadow-lg"
+        >
+          Register
+        </button>
+      </form>
+
+      <!-- Link to Login -->
+      <p class="text-center text-sm text-gray-500 mt-6">
+        Already have an account?
+        <a href="/login" class="text-rose-600 hover:underline">Log in</a>
+      </p>
+    </div>
+  </main>
+</body>
+</html>

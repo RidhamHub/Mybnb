@@ -1,0 +1,71 @@
+<!-- Header -->
+<header class="bg-rose-500 shadow-md sticky top-0 z-50">
+    <nav class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+        <!-- Logo / Brand -->
+        <h2 class="text-white text-2xl font-bold tracking-wide">
+            Welcome to <span class="italic">Mybnb</span>
+        </h2>
+
+        <!-- Navigation Links -->
+        <ul class="flex space-x-6 justify-center items-center">
+            <li>
+                <a href="/" class="<%= currentPage === 'index' ? 'bg-rose-600' : 'hover:bg-rose-600 ' %> text-white font-semibold px-4 py-2 rounded-lg transition">
+                    Mybnb
+                </a>
+            </li>
+            <% if (isLoggedIn) { %>
+                <% if (user && user.userType === 'guest') { %>
+                    <li>
+                        <a href="/homes" class="<%= currentPage === 'Home' ? 'bg-rose-600' : 'hover:bg-rose-600 ' %> text-white font-semibold px-4 py-2 rounded-lg transition">
+                            Homes-List
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/favourites" class="<%= currentPage === 'favourites' ? 'bg-rose-600' : 'hover:bg-rose-600 ' %> text-white font-semibold px-4 py-2 rounded-lg transition">
+                            Favourites
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/bookings" class="<%= currentPage === 'bookings' ? 'bg-rose-600' : 'hover:bg-rose-600 ' %> text-white font-semibold px-4 py-2 rounded-lg transition">
+                            Bookings
+                        </a>
+                    </li>
+                <% } else { %>
+                    <li>
+                        <a href="/host/host-home-list" class="<%= currentPage === 'host-homes' ? 'bg-rose-600' : 'hover:bg-rose-600 ' %> text-white font-semibold px-4 py-2 rounded-lg transition">
+                            Host Homes
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/host/add-home" class="<%= currentPage === 'addhome' ? 'bg-rose-600' : 'hover:bg-rose-600' %> text-white font-semibold px-4 py-2 rounded-lg transition">
+                            Add Home
+                        </a>
+                    </li>
+                <% } %>
+            <% } %>
+            <% if(!isLoggedIn) { %>
+                <li >
+                    <a href="/login" class="hover:bg-rose-600 text-white font-semibold px-4 py-2 rounded-lg transition">
+                        Login
+                    </a>
+                </li>
+                <li >
+                    <a href="/signup" class="hover:bg-rose-600 text-white font-semibold px-4 py-2 rounded-lg transition">
+                        SignUp
+                    </a>
+                </li>
+            <% } else { %>
+                <li>
+                    <form action="/logout" method="POST">
+                        <button
+                            class="hover:bg-rose-600 text-white font-semibold px-4 py-2 rounded-lg transition"
+                            type="submit">
+                            Logout
+                        </button>
+                    </form>
+                </li>
+            <% } %>
+           
+        </ul>
+    </nav>
+</header> 
